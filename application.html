@@ -10,72 +10,1422 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    /* =========================================================
+       BAP GIRLS APPLICATION PAGE
+       COMPLETE PAGE + LOGO CSS
+       ========================================================= */
+
+    :root {
+      --bg: #090513;
+      --bg2: #120621;
+      --panel: rgba(28, 10, 49, .76);
+
+      --purple: #9d4dff;
+      --purple2: #d9a8ff;
+      --purple3: #6d20c9;
+
+      --blue: #2778ff;
+      --blue2: #71c4ff;
+      --cyan: #9be7ff;
+
+      --pink: #f0b7ff;
+
+      --text: #f8f2ff;
+      --muted: #c8bdd4;
+      --line: rgba(190, 126, 255, .25);
+
+      --shadow: 0 22px 70px rgba(0,0,0,.48);
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      color: var(--text);
+
+      font-family: "DM Sans", Arial, sans-serif;
+
+      background:
+        radial-gradient(circle at 15% 10%, rgba(157,77,255,.22), transparent 32%),
+        radial-gradient(circle at 85% 18%, rgba(39,120,255,.18), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(109,32,201,.18), transparent 40%),
+        linear-gradient(145deg, #07030e, #10051c 48%, #08030f);
+
+      overflow-x: hidden;
+    }
+
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          115deg,
+          transparent 0%,
+          rgba(255,255,255,.025) 45%,
+          transparent 55%
+        );
+
+      z-index: -1;
+    }
+
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .site-header {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 24px;
+
+      padding: 22px 6vw;
+
+      border-bottom: 1px solid rgba(190,126,255,.15);
+
+      background: rgba(7,3,14,.72);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      position: relative;
+      z-index: 20;
+    }
+
+
+    .application-header-logo {
+      display: flex;
+      align-items: center;
+
+      min-width: 150px;
+    }
+
+
+    .application-logo-mini {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 6px;
+
+      transform: skewX(-7deg);
+
+      filter:
+        drop-shadow(0 0 8px rgba(157,77,255,.65))
+        drop-shadow(0 0 18px rgba(39,120,255,.35));
+    }
+
+
+    .application-crown-mini {
+      position: absolute;
+
+      top: -16px;
+      left: 50%;
+
+      transform: translateX(-50%) skewX(7deg);
+
+      color: #f5e7ff;
+
+      font-size: 19px;
+
+      text-shadow:
+        0 0 4px #fff,
+        0 0 8px #c98cff,
+        0 0 15px #6fbfff;
+    }
+
+
+    .application-bap-mini,
+    .application-girls-mini {
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-weight: 700;
+
+      line-height: .85;
+
+      background:
+        linear-gradient(
+          100deg,
+          #ffffff 0%,
+          #d8b5ff 18%,
+          #7f2cff 34%,
+          #f7dfff 48%,
+          #55bfff 62%,
+          #a64cff 78%,
+          #ffffff 100%
+        );
+
+      background-size: 250% 100%;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      animation: holographicShine 4s linear infinite;
+
+      -webkit-text-stroke: 1px rgba(255,255,255,.3);
+    }
+
+
+    .application-bap-mini {
+      font-size: 26px;
+      letter-spacing: -2px;
+    }
+
+
+    .application-girls-mini {
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-top: 12px;
+    }
+
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      gap: 28px;
+    }
+
+
+    .nav a {
+      color: var(--muted);
+
+      font-size: 14px;
+      font-weight: 600;
+
+      transition:
+        color .2s ease,
+        text-shadow .2s ease;
+    }
+
+
+    .nav a:hover {
+      color: #fff;
+
+      text-shadow:
+        0 0 10px rgba(157,77,255,.8);
+    }
+
+
+    /* =========================================================
+       APPLICATION MAIN
+       ========================================================= */
+
+    .application-main {
+      width: min(1050px, calc(100% - 32px));
+
+      margin: 0 auto;
+
+      padding: 70px 0 90px;
+    }
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .application-hero {
+      text-align: center;
+
+      padding: 10px 0 60px;
+    }
+
+
+    .application-logo-wrap {
+      width: 100%;
+
+      height: 250px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      perspective: 1200px;
+
+      margin-bottom: 18px;
+    }
+
+
+    /*
+      THE LOGO IS A TRUE 3D COIN.
+
+      It rotates around the Y axis:
+      FRONT → SIDE → BACK → SIDE → FRONT
+    */
+
+    .application-logo-coin {
+      position: relative;
+
+      width: 390px;
+      height: 190px;
+
+      transform-style: preserve-3d;
+
+      animation: applicationLogo3DSpin 9s ease-in-out infinite;
+
+      filter:
+        drop-shadow(0 0 8px rgba(157,77,255,.75))
+        drop-shadow(0 0 28px rgba(39,120,255,.35));
+    }
+
+
+    .application-logo-face {
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50% / 34%;
+
+      overflow: hidden;
+
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+
+      border: 4px solid rgba(221,178,255,.9);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.34),
+          rgba(157,77,255,.28) 20%,
+          rgba(55,14,104,.9) 42%,
+          rgba(45,102,255,.28) 63%,
+          rgba(220,160,255,.34)
+        );
+
+      box-shadow:
+        inset 0 0 20px rgba(255,255,255,.25),
+        inset 0 0 55px rgba(111,51,196,.7),
+        0 0 14px rgba(157,77,255,.8),
+        0 0 35px rgba(39,120,255,.4);
+    }
+
+
+    .application-logo-face::before {
+      content: "";
+
+      position: absolute;
+      inset: -40%;
+
+      background:
+        linear-gradient(
+          115deg,
+          transparent 35%,
+          rgba(255,255,255,.75) 45%,
+          rgba(155,231,255,.55) 49%,
+          transparent 57%
+        );
+
+      transform: translateX(-80%);
+
+      animation: logoReflection 3.4s ease-in-out infinite;
+
+      pointer-events: none;
+    }
+
+
+    .application-logo-face::after {
+      content: "";
+
+      position: absolute;
+      inset: 7px;
+
+      border-radius: 50% / 34%;
+
+      border: 1px solid rgba(255,255,255,.5);
+
+      box-shadow:
+        inset 0 0 12px rgba(255,255,255,.22);
+
+      pointer-events: none;
+    }
+
+
+    .application-logo-front {
+      transform: rotateY(0deg) translateZ(16px);
+    }
+
+
+    .application-logo-back {
+      transform: rotateY(180deg) translateZ(16px);
+    }
+
+
+    .application-crown {
+      position: relative;
+
+      z-index: 3;
+
+      margin-bottom: -7px;
+
+      color: #fff7ff;
+
+      font-family: Georgia, serif;
+
+      font-size: 44px;
+
+      line-height: 1;
+
+      text-shadow:
+        0 1px 0 #8b48c9,
+        0 2px 0 #6a2a9c,
+        0 3px 0 #4b1b70,
+        0 0 5px #ffffff,
+        0 0 13px #d6a0ff,
+        0 0 24px #4eafff;
+
+      filter:
+        drop-shadow(0 5px 4px rgba(0,0,0,.45));
+    }
+
+
+    .application-bap,
+    .application-girls {
+      position: relative;
+
+      z-index: 3;
+
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-weight: 700;
+
+      font-style: italic;
+
+      text-align: center;
+
+      line-height: .82;
+
+      background:
+        linear-gradient(
+          105deg,
+          #ffffff 0%,
+          #cfa2ff 13%,
+          #7624db 27%,
+          #f5d8ff 40%,
+          #6ecbff 53%,
+          #7929df 68%,
+          #e6b9ff 82%,
+          #ffffff 100%
+        );
+
+      background-size: 300% 100%;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      -webkit-text-stroke: 1.5px rgba(255,255,255,.38);
+
+      animation: holographicShine 3.2s linear infinite;
+
+      filter:
+        drop-shadow(0 4px 2px rgba(20,0,45,.8))
+        drop-shadow(0 0 7px rgba(157,77,255,.7));
+    }
+
+
+    .application-bap {
+      font-size: 76px;
+
+      letter-spacing: -5px;
+    }
+
+
+    .application-girls {
+      margin-top: 8px;
+
+      font-size: 37px;
+
+      letter-spacing: 8px;
+    }
+
+
+    @keyframes applicationLogo3DSpin {
+
+      0% {
+        transform: rotateY(0deg);
+      }
+
+      16% {
+        transform: rotateY(0deg);
+      }
+
+      29% {
+        transform: rotateY(90deg);
+      }
+
+      42% {
+        transform: rotateY(180deg);
+      }
+
+      58% {
+        transform: rotateY(180deg);
+      }
+
+      71% {
+        transform: rotateY(270deg);
+      }
+
+      84% {
+        transform: rotateY(360deg);
+      }
+
+      100% {
+        transform: rotateY(360deg);
+      }
+
+    }
+
+
+    @keyframes holographicShine {
+
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+
+    }
+
+
+    @keyframes logoReflection {
+
+      0%,
+      20% {
+        transform: translateX(-90%) rotate(10deg);
+      }
+
+      55% {
+        transform: translateX(90%) rotate(10deg);
+      }
+
+      100% {
+        transform: translateX(90%) rotate(10deg);
+      }
+
+    }
+
+
+    .eyebrow {
+      display: inline-block;
+
+      margin-bottom: 16px;
+
+      color: var(--blue2);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 4px;
+
+      text-transform: uppercase;
+    }
+
+
+    .application-hero h1 {
+      margin: 0;
+
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: clamp(38px, 6vw, 70px);
+
+      line-height: 1.05;
+
+      letter-spacing: -2px;
+
+      text-shadow:
+        0 0 25px rgba(157,77,255,.2);
+    }
+
+
+    .application-hero h1 span {
+      display: block;
+
+      margin-top: 9px;
+
+      color: var(--purple2);
+
+      font-size: .52em;
+
+      letter-spacing: 0;
+    }
+
+
+    .application-hero > p {
+      width: min(720px, 100%);
+
+      margin: 25px auto 0;
+
+      color: var(--muted);
+
+      font-size: 16px;
+
+      line-height: 1.8;
+    }
+
+
+    /* =========================================================
+       APPLICATION FORM
+       ========================================================= */
+
+    .application-form {
+      display: grid;
+
+      gap: 22px;
+    }
+
+
+    .form-section {
+      padding: 32px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(44,15,75,.72),
+          rgba(15,5,28,.82)
+        );
+
+      box-shadow: var(--shadow);
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+
+    .form-heading {
+      display: flex;
+      align-items: flex-start;
+
+      gap: 18px;
+
+      margin-bottom: 28px;
+    }
+
+
+    .form-heading > span {
+      flex: 0 0 auto;
+
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+
+      color: #fff;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(157,77,255,.9),
+          rgba(39,120,255,.6)
+        );
+
+      box-shadow:
+        0 0 18px rgba(157,77,255,.28),
+        inset 0 1px 0 rgba(255,255,255,.25);
+    }
+
+
+    .form-heading h2 {
+      margin: 0 0 5px;
+
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: 27px;
+    }
+
+
+    .form-heading p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+
+    .form-section > label {
+      display: block;
+
+      margin-top: 22px;
+
+      color: #f5edff;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+
+    .form-section > label:first-of-type {
+      margin-top: 0;
+    }
+
+
+    label > span {
+      color: var(--pink);
+    }
+
+
+    label small {
+      display: block;
+
+      margin: 7px 0 9px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      font-weight: 400;
+
+      line-height: 1.55;
+    }
+
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+
+      margin-top: 9px;
+
+      padding: 15px 16px;
+
+      border: 1px solid rgba(190,126,255,.25);
+
+      border-radius: 13px;
+
+      outline: none;
+
+      color: #fff;
+
+      background:
+        rgba(9,5,19,.76);
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.03);
+
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+    }
+
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #8f829c;
+    }
+
+
+    select {
+      color: #fff;
+
+      appearance: auto;
+    }
+
+
+    textarea {
+      min-height: 140px;
+
+      resize: vertical;
+
+      line-height: 1.6;
+    }
+
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(157,77,255,.8);
+
+      background: rgba(14,6,27,.9);
+
+      box-shadow:
+        0 0 0 3px rgba(157,77,255,.1),
+        0 0 22px rgba(157,77,255,.13);
+    }
+
+
+    /* =========================================================
+       ACKNOWLEDGMENT
+       ========================================================= */
+
+    .acknowledgment {
+      padding: 22px;
+
+      border-radius: 17px;
+
+      border: 1px solid rgba(157,77,255,.2);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(109,32,201,.12),
+          rgba(39,120,255,.05)
+        );
+
+      margin-bottom: 22px;
+    }
+
+
+    .acknowledgment p {
+      margin: 0 0 15px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.7;
+    }
+
+
+    .acknowledgment p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .acknowledgment strong {
+      color: #fff;
+    }
+
+
+    .checkbox-label {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 13px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.6;
+
+      cursor: pointer;
+    }
+
+
+    .checkbox-label input {
+      width: 19px;
+      height: 19px;
+
+      flex: 0 0 auto;
+
+      margin: 3px 0 0;
+
+      accent-color: var(--purple);
+    }
+
+
+    .checkbox-label span {
+      color: var(--muted);
+    }
+
+
+    .checkbox-label span strong {
+      color: var(--pink);
+    }
+
+
+    /* =========================================================
+       SUBMIT
+       ========================================================= */
+
+    .submit-area {
+      padding: 34px;
+
+      text-align: center;
+
+      border: 1px solid rgba(157,77,255,.3);
+
+      border-radius: 24px;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(157,77,255,.18),
+          transparent 55%
+        ),
+        rgba(17,6,31,.8);
+
+      box-shadow: var(--shadow);
+    }
+
+
+    .submit-area p {
+      margin: 0 auto 22px;
+
+      max-width: 600px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    .submit-button {
+      border: 0;
+
+      padding: 16px 32px;
+
+      border-radius: 999px;
+
+      color: #fff;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          110deg,
+          #7622d5,
+          #a64dff,
+          #347dff,
+          #8b36e7
+        );
+
+      background-size: 250% 100%;
+
+      box-shadow:
+        0 10px 35px rgba(111,40,210,.35),
+        inset 0 1px 0 rgba(255,255,255,.3);
+
+      animation: buttonShimmer 4s ease-in-out infinite;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 15px 42px rgba(111,40,210,.5),
+        inset 0 1px 0 rgba(255,255,255,.4);
+    }
+
+
+    .submit-button:active {
+      transform: translateY(0);
+    }
+
+
+    @keyframes buttonShimmer {
+
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+
+    }
+
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .site-footer {
+      padding: 45px 6vw;
+
+      text-align: center;
+
+      border-top: 1px solid rgba(190,126,255,.15);
+
+      background: rgba(6,2,12,.75);
+    }
+
+
+    .application-footer-logo {
+      display: inline-flex;
+
+      align-items: baseline;
+
+      gap: 8px;
+
+      margin-bottom: 15px;
+
+      transform: skewX(-6deg);
+
+      filter:
+        drop-shadow(0 0 8px rgba(157,77,255,.5));
+    }
+
+
+    .footer-bap-logo .bap-word,
+    .footer-bap-logo .girls-word {
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-weight: 700;
+
+      font-style: italic;
+
+      background:
+        linear-gradient(
+          100deg,
+          #fff,
+          #b66cff,
+          #62c7ff,
+          #d8a5ff,
+          #fff
+        );
+
+      background-size: 250% 100%;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      animation: holographicShine 4s linear infinite;
+    }
+
+
+    .footer-bap-logo .bap-word {
+      font-size: 37px;
+
+      letter-spacing: -3px;
+    }
+
+
+    .footer-bap-logo .girls-word {
+      font-size: 19px;
+
+      letter-spacing: 3px;
+    }
+
+
+    .site-footer p {
+      margin: 0 0 10px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+
+    .site-footer > a {
+      color: var(--purple2);
+
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+
+    .site-footer > a:hover {
+      color: #fff;
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 700px) {
+
+      .site-header {
+        padding: 20px 18px;
+
+        flex-direction: column;
+
+        gap: 22px;
+      }
+
+
+      .application-header-logo {
+        min-width: 0;
+      }
+
+
+      .nav {
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 17px;
+
+        flex-wrap: wrap;
+      }
+
+
+      .nav a {
+        font-size: 12px;
+      }
+
+
+      .application-main {
+        width: min(100% - 22px, 1050px);
+
+        padding-top: 45px;
+      }
+
+
+      .application-logo-wrap {
+        height: 190px;
+
+        margin-bottom: 8px;
+      }
+
+
+      .application-logo-coin {
+        width: 300px;
+        height: 145px;
+      }
+
+
+      .application-bap {
+        font-size: 58px;
+
+        letter-spacing: -4px;
+      }
+
+
+      .application-girls {
+        font-size: 28px;
+
+        letter-spacing: 6px;
+      }
+
+
+      .application-crown {
+        font-size: 34px;
+      }
+
+
+      .application-hero {
+        padding-bottom: 42px;
+      }
+
+
+      .application-hero h1 {
+        font-size: 40px;
+      }
+
+
+      .application-hero h1 span {
+        font-size: .5em;
+      }
+
+
+      .application-hero > p {
+        font-size: 14px;
+
+        line-height: 1.7;
+      }
+
+
+      .eyebrow {
+        font-size: 10px;
+
+        letter-spacing: 3px;
+      }
+
+
+      .form-section {
+        padding: 22px 18px;
+
+        border-radius: 19px;
+      }
+
+
+      .form-heading {
+        gap: 13px;
+      }
+
+
+      .form-heading > span {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 12px;
+      }
+
+
+      .form-heading h2 {
+        font-size: 22px;
+      }
+
+
+      .form-heading p {
+        font-size: 12px;
+      }
+
+
+      .submit-area {
+        padding: 27px 18px;
+      }
+
+
+      .submit-button {
+        width: 100%;
+      }
+
+    }
+
+
+    @media (max-width: 430px) {
+
+      .application-logo-coin {
+        width: 275px;
+        height: 132px;
+      }
+
+
+      .application-bap {
+        font-size: 52px;
+      }
+
+
+      .application-girls {
+        font-size: 25px;
+
+        letter-spacing: 5px;
+      }
+
+
+      .application-crown {
+        font-size: 30px;
+      }
+
+
+      .application-hero h1 {
+        font-size: 35px;
+      }
+
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .application-logo-coin,
+      .application-bap,
+      .application-girls,
+      .application-bap-mini,
+      .application-girls-mini,
+      .footer-bap-logo .bap-word,
+      .footer-bap-logo .girls-word,
+      .submit-button {
+        animation: none;
+      }
+
+    }
+
+  </style>
 </head>
+
 
 <body>
 
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
   <header class="site-header">
 
-    <a class="brand application-header-logo" href="index.html" aria-label="BAP Girls home">
+    <a
+      class="brand application-header-logo"
+      href="index.html"
+      aria-label="BAP Girls home">
 
-      <div class="application-logo-mini" aria-hidden="true">
+      <div
+        class="application-logo-mini"
+        aria-hidden="true">
+
         <span class="application-crown-mini">♛</span>
-        <span class="application-bap-mini">BAP</span>
-        <span class="application-girls-mini">GIRLS</span>
+
+        <span class="application-bap-mini">
+          BAP
+        </span>
+
+        <span class="application-girls-mini">
+          GIRLS
+        </span>
+
       </div>
 
     </a>
 
+
     <nav class="nav nav-always">
-      <a href="index.html#about">About</a>
-      <a href="index.html#looking-for">What We're Looking For</a>
-      <a href="index.html#booking">Booking</a>
+
+      <a href="index.html#about">
+        About
+      </a>
+
+      <a href="index.html#looking-for">
+        What We're Looking For
+      </a>
+
+      <a href="index.html#booking">
+        Booking
+      </a>
+
     </nav>
 
   </header>
 
 
+  <!-- =======================================================
+       MAIN APPLICATION
+       ======================================================= -->
+
   <main class="application-main">
+
+
+    <!-- =====================================================
+         APPLICATION HERO
+         ===================================================== -->
 
     <section class="application-hero">
 
-      <div class="application-logo-wrap" aria-label="BAP Girls">
+
+      <!-- 3D HOLOGRAPHIC BAP GIRLS LOGO -->
+
+      <div
+        class="application-logo-wrap"
+        aria-label="BAP Girls">
 
         <div class="application-logo-coin">
 
+
+          <!-- FRONT -->
+
           <div class="application-logo-face application-logo-front">
 
-            <span class="application-crown">♛</span>
+            <span class="application-crown">
+              ♛
+            </span>
 
-            <span class="application-bap">BAP</span>
+            <span class="application-bap">
+              BAP
+            </span>
 
-            <span class="application-girls">GIRLS</span>
+            <span class="application-girls">
+              GIRLS
+            </span>
 
           </div>
 
+
+          <!-- BACK -->
 
           <div class="application-logo-face application-logo-back">
 
-            <span class="application-crown">♛</span>
+            <span class="application-crown">
+              ♛
+            </span>
 
-            <span class="application-bap">BAP</span>
+            <span class="application-bap">
+              BAP
+            </span>
 
-            <span class="application-girls">GIRLS</span>
+            <span class="application-girls">
+              GIRLS
+            </span>
 
           </div>
+
 
         </div>
 
       </div>
 
 
-      <span class="eyebrow">BOUGIE &amp; PAID GIRLS</span>
+      <span class="eyebrow">
+        BOUGIE &amp; PAID GIRLS
+      </span>
+
 
       <h1>
-        BAP Girls<br>
-        <span>Membership Application</span>
+
+        BAP Girls
+
+        <br>
+
+        <span>
+          Membership Application
+        </span>
+
       </h1>
+
 
       <p>
         Please take your time and answer each question honestly and thoughtfully.
@@ -83,47 +1433,80 @@
         and genuinely interested in contributing to the BAP Girls community.
       </p>
 
+
     </section>
 
 
-    <form class="application-form"
-          action="https://formsubmit.co/forpicedits1@gmail.com"
-          method="POST">
+    <!-- =====================================================
+         FORM
+         ===================================================== -->
 
-      <input type="hidden"
-             name="_subject"
-             value="💜 New BAP Girls Membership Application">
+    <form
+      class="application-form"
+      action="https://formsubmit.co/forpicedits1@gmail.com"
+      method="POST">
 
-      <input type="hidden"
-             name="_template"
-             value="table">
 
-      <input type="hidden"
-             name="_captcha"
-             value="false">
+      <input
+        type="hidden"
+        name="_subject"
+        value="💜 New BAP Girls Membership Application">
 
-      <input type="hidden"
-             name="_next"
-             value="https://bapgirls.onrender.com/thank-you.html">
 
-      <input type="hidden"
-             name="_autoresponse"
-             value="Thank you for applying to BAP Girls. Your application has been received and will be reviewed by the founders. We appreciate your interest in becoming part of BAP Girls.">
+      <input
+        type="hidden"
+        name="_template"
+        value="table">
 
+
+      <input
+        type="hidden"
+        name="_captcha"
+        value="false">
+
+
+      <input
+        type="hidden"
+        name="_next"
+        value="https://bapgirls.onrender.com/thank-you.html">
+
+
+      <input
+        type="hidden"
+        name="_autoresponse"
+        value="Thank you for applying to BAP Girls. Your application has been received and will be reviewed by the founders. We appreciate your interest in becoming part of BAP Girls.">
+
+
+      <!-- ===================================================
+           01 APPLICANT INFORMATION
+           =================================================== -->
 
       <section class="form-section">
 
+
         <div class="form-heading">
-          <span>01</span>
+
+          <span>
+            01
+          </span>
 
           <div>
-            <h2>Applicant Information</h2>
-            <p>Tell us where to find you.</p>
+
+            <h2>
+              Applicant Information
+            </h2>
+
+            <p>
+              Tell us where to find you.
+            </p>
+
           </div>
+
         </div>
 
 
         <label>
+
           Full Name <span>*</span>
 
           <input
@@ -131,14 +1514,17 @@
             name="Full Name"
             required
             placeholder="Type your full name">
+
         </label>
 
 
         <label>
+
           Second Life Username <span>*</span>
 
           <small>
-            Please provide your Second Life <strong>legacy username</strong>,
+            Please provide your Second Life
+            <strong>legacy username</strong>,
             not your display name.
           </small>
 
@@ -147,10 +1533,12 @@
             name="Second Life Username (Legacy)"
             required
             placeholder="Your SL username">
+
         </label>
 
 
         <label>
+
           Discord Username <span>*</span>
 
           <input
@@ -158,10 +1546,12 @@
             name="Discord Username"
             required
             placeholder="Your Discord username">
+
         </label>
 
 
         <label>
+
           Instagram Username <span>*</span>
 
           <input
@@ -169,95 +1559,172 @@
             name="Instagram Username"
             required
             placeholder="@yourusername">
+
         </label>
+
 
       </section>
 
 
+      <!-- ===================================================
+           02 GET TO KNOW YOU
+           =================================================== -->
+
       <section class="form-section">
 
+
         <div class="form-heading">
-          <span>02</span>
+
+          <span>
+            02
+          </span>
 
           <div>
-            <h2>Get to Know You</h2>
-            <p>We want to know the woman behind the avatar.</p>
+
+            <h2>
+              Get to Know You
+            </h2>
+
+            <p>
+              We want to know the woman behind the avatar.
+            </p>
+
           </div>
+
         </div>
 
 
         <label>
-          Tell us about yourself and why you want to join BAP Girls. <span>*</span>
+
+          Tell us about yourself and why you want to join BAP Girls.
+          <span>*</span>
 
           <textarea
             name="About You & Why You Want to Join"
             required
             placeholder="Tell us a little about yourself..."></textarea>
+
         </label>
 
 
         <label>
-          How did you hear about BAP Girls? <span>*</span>
+
+          How did you hear about BAP Girls?
+          <span>*</span>
 
           <input
             type="text"
             name="How You Heard About Us"
             required
             placeholder="Tell us how you found us">
+
         </label>
 
 
         <label>
-          What does sisterhood mean to you? <span>*</span>
+
+          What does sisterhood mean to you?
+          <span>*</span>
 
           <textarea
             name="What Sisterhood Means"
             required
             placeholder="What does sisterhood mean to you?"></textarea>
+
         </label>
 
 
         <label>
-          What do you hope to contribute to BAP Girls? <span>*</span>
+
+          What do you hope to contribute to BAP Girls?
+          <span>*</span>
 
           <textarea
             name="What You Hope to Contribute"
             required
             placeholder="Tell us what you can bring to the group..."></textarea>
+
         </label>
+
 
       </section>
 
 
+      <!-- ===================================================
+           03 COMMITMENT & GROWTH
+           =================================================== -->
+
       <section class="form-section">
 
+
         <div class="form-heading">
-          <span>03</span>
+
+          <span>
+            03
+          </span>
 
           <div>
-            <h2>Commitment &amp; Growth</h2>
-            <p>We value participation, communication, and progression.</p>
+
+            <h2>
+              Commitment &amp; Growth
+            </h2>
+
+            <p>
+              We value participation, communication, and progression.
+            </p>
+
           </div>
+
         </div>
 
 
         <label>
-          How many days per week can you realistically dedicate to BAP Girls? <span>*</span>
 
-          <select name="Realistic Days Per Week" required>
+          How many days per week can you realistically dedicate to BAP Girls?
+          <span>*</span>
 
-            <option value="" selected disabled>
+          <select
+            name="Realistic Days Per Week"
+            required>
+
+            <option
+              value=""
+              selected
+              disabled>
               Select an option
             </option>
 
-            <option>1 day</option>
-            <option>2 days</option>
-            <option>3 days</option>
-            <option>4 days</option>
-            <option>5 days</option>
-            <option>6 days</option>
-            <option>7 days</option>
-            <option>My availability varies</option>
+            <option>
+              1 day
+            </option>
+
+            <option>
+              2 days
+            </option>
+
+            <option>
+              3 days
+            </option>
+
+            <option>
+              4 days
+            </option>
+
+            <option>
+              5 days
+            </option>
+
+            <option>
+              6 days
+            </option>
+
+            <option>
+              7 days
+            </option>
+
+            <option>
+              My availability varies
+            </option>
 
           </select>
 
@@ -265,17 +1732,32 @@
 
 
         <label>
-          Are you interested in a leadership role? <span>*</span>
 
-          <select name="Leadership Interest" required>
+          Are you interested in a leadership role?
+          <span>*</span>
 
-            <option value="" selected disabled>
+          <select
+            name="Leadership Interest"
+            required>
+
+            <option
+              value=""
+              selected
+              disabled>
               Select an option
             </option>
 
-            <option>Yes</option>
-            <option>Possibly in the future</option>
-            <option>No, I prefer membership</option>
+            <option>
+              Yes
+            </option>
+
+            <option>
+              Possibly in the future
+            </option>
+
+            <option>
+              No, I prefer membership
+            </option>
 
           </select>
 
@@ -283,72 +1765,116 @@
 
 
         <label>
-          If you're interested in leadership, what type of role interests you?
+
+          If you're interested in leadership,
+          what type of role interests you?
 
           <small>
-            Examples: Dance Choreographer, Bonding Manager, Event Manager,
-            or another role you feel would benefit BAP Girls.
+            Examples: Dance Choreographer, Bonding Manager,
+            Event Manager, or another role you feel would
+            benefit BAP Girls.
           </small>
 
           <input
             type="text"
             name="Leadership Role Interest"
             placeholder="Leadership role(s), if any">
+
         </label>
+
 
       </section>
 
 
+      <!-- ===================================================
+           04 COMMUNICATION & CONDUCT
+           =================================================== -->
+
       <section class="form-section">
 
+
         <div class="form-heading">
-          <span>04</span>
+
+          <span>
+            04
+          </span>
 
           <div>
-            <h2>Communication &amp; Conduct</h2>
-            <p>How you communicate matters.</p>
+
+            <h2>
+              Communication &amp; Conduct
+            </h2>
+
+            <p>
+              How you communicate matters.
+            </p>
+
           </div>
+
         </div>
 
 
         <label>
-          How do you handle concerns involving founders or leadership? <span>*</span>
+
+          How do you handle concerns involving founders or leadership?
+          <span>*</span>
 
           <small>
             Please explain how you would communicate a concern respectfully
-            and appropriately. We expect concerns involving founders or leadership
-            to be handled directly and privately when appropriate, rather than
-            creating unnecessary conflict in the group chat.
+            and appropriately. We expect concerns involving founders or
+            leadership to be handled directly and privately when appropriate,
+            rather than creating unnecessary conflict in the group chat.
           </small>
 
           <textarea
             name="Communication With Founders"
             required
             placeholder="Explain how you would handle a concern..."></textarea>
+
         </label>
+
 
       </section>
 
 
+      <!-- ===================================================
+           05 MEMBERSHIP EXPECTATIONS
+           =================================================== -->
+
       <section class="form-section acknowledgment-section">
 
+
         <div class="form-heading">
-          <span>05</span>
+
+          <span>
+            05
+          </span>
 
           <div>
-            <h2>Membership Expectations</h2>
-            <p>Please read this carefully before submitting.</p>
+
+            <h2>
+              Membership Expectations
+            </h2>
+
+            <p>
+              Please read this carefully before submitting.
+            </p>
+
           </div>
+
         </div>
 
 
         <div class="acknowledgment">
 
+
           <p>
             By submitting this application, you acknowledge that joining BAP Girls
-            means choosing to be an <strong>active and contributing member</strong>
+            means choosing to be an
+            <strong>active and contributing member</strong>
             of the group.
           </p>
+
 
           <p>
             You understand that continued inactivity, lack of communication,
@@ -357,16 +1883,19 @@
             at the discretion of the founders.
           </p>
 
+
           <p>
             Membership is not guaranteed simply because an application is submitted
             or accepted. BAP Girls reserves the right to address membership concerns
             and remove members when deemed necessary by the founders.
           </p>
 
+
         </div>
 
 
         <label class="checkbox-label">
+
 
           <input
             type="checkbox"
@@ -374,75 +1903,120 @@
             value="Yes — acknowledged and agreed"
             required>
 
+
           <span>
             I have read and understand the BAP Girls membership expectations above.
             I understand that inactivity, misconduct, or failure to meet group
             expectations may result in removal at the founders' discretion.
             I agree to communicate appropriately and contribute positively as a
-            member of BAP Girls. <strong>*</strong>
+            member of BAP Girls.
+            <strong>*</strong>
           </span>
 
+
         </label>
+
 
       </section>
 
 
+      <!-- ===================================================
+           06 FINAL SUBMISSION
+           =================================================== -->
+
       <section class="form-section">
 
+
         <div class="form-heading">
-          <span>06</span>
+
+          <span>
+            06
+          </span>
 
           <div>
-            <h2>Final Submission</h2>
-            <p>Anything else you'd like us to know?</p>
+
+            <h2>
+              Final Submission
+            </h2>
+
+            <p>
+              Anything else you'd like us to know?
+            </p>
+
           </div>
+
         </div>
 
 
         <label>
-          Is there anything else you would like the BAP Girls founders to know about you?
+
+          Is there anything else you would like the BAP Girls founders
+          to know about you?
 
           <textarea
             name="Anything Else"
             placeholder="Optional"></textarea>
+
         </label>
+
 
       </section>
 
 
+      <!-- ===================================================
+           SUBMIT
+           =================================================== -->
+
       <div class="submit-area">
+
 
         <p>
           By clicking submit, your application will be sent to the
           BAP Girls founders for review.
         </p>
 
+
         <button
           class="button button-primary submit-button"
           type="submit">
+
           Submit Application 💜
+
         </button>
+
 
       </div>
 
+
     </form>
+
 
   </main>
 
 
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
   <footer class="site-footer">
+
 
     <div class="footer-bap-logo application-footer-logo">
 
-      <span class="bap-word">BAP</span>
+      <span class="bap-word">
+        BAP
+      </span>
 
-      <span class="girls-word">GIRLS</span>
+      <span class="girls-word">
+        GIRLS
+      </span>
 
     </div>
 
 
     <p>
-      © <span id="year"></span>
+      ©
+      <span id="year"></span>
       BAP Girls · Bougie &amp; Paid Girls
     </p>
 
@@ -451,16 +2025,26 @@
       href="https://www.instagram.com/bap.girls/"
       target="_blank"
       rel="noopener">
+
       @bap.girls on Instagram
+
     </a>
+
 
   </footer>
 
 
+  <!-- =======================================================
+       YEAR
+       ======================================================= -->
+
   <script>
-    document.getElementById('year').textContent =
+
+    document.getElementById("year").textContent =
       new Date().getFullYear();
+
   </script>
+
 
 </body>
 </html>
