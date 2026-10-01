@@ -217,7 +217,6 @@
 
   </header>
 
-
   <main class="application-main">
 
     <section class="application-hero">
@@ -236,7 +235,6 @@
 
           </div>
 
-
           <div class="application-logo-face application-logo-back">
 
             <span class="application-crown">♛</span>
@@ -250,7 +248,6 @@
         </div>
 
       </div>
-
 
       <span class="eyebrow">BOUGIE &amp; PAID GIRLS</span>
 
@@ -266,7 +263,6 @@
       </p>
 
     </section>
-
 
     <form
       class="application-form"
@@ -289,12 +285,6 @@
         name="_captcha"
         value="false">
 
-      <input
-        type="hidden"
-        name="_autoresponse"
-        value="Thank you for applying to BAP Girls. Your application has been received and will be reviewed by the founders. We appreciate your interest in becoming part of BAP Girls.">
-
-
       <section class="form-section">
 
         <div class="form-heading">
@@ -306,7 +296,6 @@
           </div>
         </div>
 
-
         <label>
           Full Name <span>*</span>
 
@@ -316,7 +305,6 @@
             required
             placeholder="Type your full name">
         </label>
-
 
         <label>
           Second Life Username <span>*</span>
@@ -333,7 +321,6 @@
             placeholder="Your SL username">
         </label>
 
-
         <label>
           Discord Username <span>*</span>
 
@@ -343,7 +330,6 @@
             required
             placeholder="Your Discord username">
         </label>
-
 
         <label>
           Instagram Username <span>*</span>
@@ -357,7 +343,6 @@
 
       </section>
 
-
       <section class="form-section">
 
         <div class="form-heading">
@@ -369,7 +354,6 @@
           </div>
         </div>
 
-
         <label>
           Tell us about yourself and why you want to join BAP Girls. <span>*</span>
 
@@ -378,7 +362,6 @@
             required
             placeholder="Tell us a little about yourself..."></textarea>
         </label>
-
 
         <label>
           How did you hear about BAP Girls? <span>*</span>
@@ -390,7 +373,6 @@
             placeholder="Tell us how you found us">
         </label>
 
-
         <label>
           What does sisterhood mean to you? <span>*</span>
 
@@ -399,7 +381,6 @@
             required
             placeholder="What does sisterhood mean to you?"></textarea>
         </label>
-
 
         <label>
           What do you hope to contribute to BAP Girls? <span>*</span>
@@ -412,7 +393,6 @@
 
       </section>
 
-
       <section class="form-section">
 
         <div class="form-heading">
@@ -423,7 +403,6 @@
             <p>We value participation, communication, and progression.</p>
           </div>
         </div>
-
 
         <label>
           How many days per week can you realistically dedicate to BAP Girls? <span>*</span>
@@ -447,7 +426,6 @@
 
         </label>
 
-
         <label>
           Are you interested in a leadership role? <span>*</span>
 
@@ -465,7 +443,6 @@
 
         </label>
 
-
         <label>
           If you're interested in leadership, what type of role interests you?
 
@@ -482,7 +459,6 @@
 
       </section>
 
-
       <section class="form-section">
 
         <div class="form-heading">
@@ -493,7 +469,6 @@
             <p>How you communicate matters.</p>
           </div>
         </div>
-
 
         <label>
           How do you handle concerns involving founders or leadership? <span>*</span>
@@ -513,7 +488,6 @@
 
       </section>
 
-
       <section class="form-section acknowledgment-section">
 
         <div class="form-heading">
@@ -524,7 +498,6 @@
             <p>Please read this carefully before submitting.</p>
           </div>
         </div>
-
 
         <div class="acknowledgment">
 
@@ -549,7 +522,6 @@
 
         </div>
 
-
         <label class="checkbox-label">
 
           <input
@@ -570,7 +542,6 @@
 
       </section>
 
-
       <section class="form-section">
 
         <div class="form-heading">
@@ -582,7 +553,6 @@
           </div>
         </div>
 
-
         <label>
           Is there anything else you would like the BAP Girls founders to know about you?
 
@@ -592,7 +562,6 @@
         </label>
 
       </section>
-
 
       <div class="submit-area">
 
@@ -614,7 +583,6 @@
 
   </main>
 
-
   <footer class="site-footer">
 
     <div class="footer-bap-logo application-footer-logo">
@@ -625,12 +593,10 @@
 
     </div>
 
-
     <p>
       © <span id="year"></span>
       BAP Girls · Bougie &amp; Paid Girls
     </p>
-
 
     <a
       href="https://www.instagram.com/bap.girls/"
@@ -640,7 +606,6 @@
     </a>
 
   </footer>
-
 
   <!-- SUCCESS POPUP -->
 
@@ -683,12 +648,19 @@
 
   </div>
 
-
   <script>
+
+    /* ================================
+       FOOTER YEAR
+       ================================ */
 
     document.getElementById('year').textContent =
       new Date().getFullYear();
 
+
+    /* ================================
+       BAP GIRLS APPLICATION
+       ================================ */
 
     const applicationForm =
       document.getElementById('bapApplicationForm');
@@ -703,80 +675,240 @@
       document.getElementById('successClose');
 
 
-    applicationForm.addEventListener('submit', async function(event) {
+    applicationForm.addEventListener(
+      'submit',
+      async function(event) {
 
-      event.preventDefault();
-
-      if (!applicationForm.checkValidity()) {
-        applicationForm.reportValidity();
-        return;
-      }
-
-      submitButton.disabled = true;
-      submitButton.textContent = 'Submitting... 💜';
+        event.preventDefault();
 
 
-      const formData =
-        new FormData(applicationForm);
+        /* -------------------------------
+           VALIDATE FORM
+           ------------------------------- */
+
+        if (!applicationForm.checkValidity()) {
+
+          applicationForm.reportValidity();
+
+          return;
+        }
 
 
-      try {
+        /* -------------------------------
+           PREVENT DOUBLE SUBMISSIONS
+           ------------------------------- */
 
-        await fetch(
-          applicationForm.action,
-          {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors'
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          'Submitting... 💜';
+
+
+        /* -------------------------------
+           COLLECT FORM DATA
+           ------------------------------- */
+
+        const formData =
+          new FormData(applicationForm);
+
+        const formObject =
+          Object.fromEntries(formData.entries());
+
+
+        /* -------------------------------
+           30-SECOND SAFETY TIMEOUT
+
+           Prevents the button from staying
+           on "Submitting..." indefinitely.
+           ------------------------------- */
+
+        const controller =
+          new AbortController();
+
+        const timeoutId =
+          setTimeout(
+            function() {
+              controller.abort();
+            },
+            30000
+          );
+
+
+        try {
+
+          /* -----------------------------
+             SEND TO FORMSUBMIT AJAX
+             ----------------------------- */
+
+          const response =
+            await fetch(
+              'https://formsubmit.co/ajax/forpicedits1@gmail.com',
+              {
+                method: 'POST',
+
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+
+                body: JSON.stringify(formObject),
+
+                signal: controller.signal
+              }
+            );
+
+
+          clearTimeout(timeoutId);
+
+
+          /* -----------------------------
+             READ FORMSUBMIT RESPONSE
+             ----------------------------- */
+
+          let result;
+
+          try {
+
+            result =
+              await response.json();
+
+          } catch (jsonError) {
+
+            throw new Error(
+              'The form server returned an invalid response.'
+            );
+
           }
-        );
 
-        applicationForm.reset();
 
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Application 💜';
+          console.log(
+            'BAP Girls FormSubmit response:',
+            result
+          );
 
-        successOverlay.classList.add('show');
 
-      } catch (error) {
+          /* -----------------------------
+             ONLY SHOW SUCCESS IF
+             FORMSUBMIT CONFIRMS SUCCESS
+             ----------------------------- */
 
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Application 💜';
+          const submissionSucceeded =
+            response.ok &&
+            (
+              result.success === true ||
+              result.success === 'true'
+            );
 
-        alert(
-          'Something went wrong while submitting your application. Please try again.'
-        );
+
+          if (!submissionSucceeded) {
+
+            throw new Error(
+              result.message ||
+              'FormSubmit did not accept the application.'
+            );
+
+          }
+
+
+          /* -----------------------------
+             SUCCESS
+             ----------------------------- */
+
+          applicationForm.reset();
+
+          submitButton.disabled = false;
+
+          submitButton.textContent =
+            'Submit Application 💜';
+
+          successOverlay.classList.add('show');
+
+
+        } catch (error) {
+
+          clearTimeout(timeoutId);
+
+
+          submitButton.disabled = false;
+
+          submitButton.textContent =
+            'Submit Application 💜';
+
+
+          console.error(
+            'BAP Girls application submission error:',
+            error
+          );
+
+
+          /* -----------------------------
+             TIMEOUT
+             ----------------------------- */
+
+          if (error.name === 'AbortError') {
+
+            alert(
+              'The application server took too long to respond. ' +
+              'Please wait a moment before trying again. 💜'
+            );
+
+
+            return;
+          }
+
+
+          /* -----------------------------
+             OTHER ERROR
+             ----------------------------- */
+
+          alert(
+            'We could not confirm that your application was submitted. ' +
+            'Please try again in a moment. 💜'
+          );
+
+        }
 
       }
-
-    });
-
-
-    successClose.addEventListener('click', function() {
-
-      successOverlay.classList.remove('show');
-
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-
-    });
+    );
 
 
-    successOverlay.addEventListener('click', function(event) {
+    /* ================================
+       SUCCESS POPUP CLOSE BUTTON
+       ================================ */
 
-      if (event.target === successOverlay) {
+    successClose.addEventListener(
+      'click',
+      function() {
 
         successOverlay.classList.remove('show');
 
-      }
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
 
-    });
+      }
+    );
+
+
+    /* ================================
+       CLOSE POPUP BY CLICKING OUTSIDE
+       ================================ */
+
+    successOverlay.addEventListener(
+      'click',
+      function(event) {
+
+        if (event.target === successOverlay) {
+
+          successOverlay.classList.remove('show');
+
+        }
+
+      }
+    );
 
   </script>
 
 </body>
-</html>   
-        
-      
+</html>
